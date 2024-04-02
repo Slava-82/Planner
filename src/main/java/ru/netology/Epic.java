@@ -16,13 +16,11 @@ public class Epic extends Task {
 
     @Override
     public boolean matches(String query) {
-        String[] subtask = new String[subtasks.length];
 
-        for (int i = 0; i < subtask.length; i++) {
-            subtask[i] = subtasks[i];
+for (int i = 0; i < subtasks.length; i++) {
 
 
-            if (subtask[i].contains(query)) {
+            if (subtasks[i].contains(query)) {
                 return true;
             }
         }

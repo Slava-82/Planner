@@ -6,10 +6,12 @@ public class Task {
     protected int id;
 
     public Task(int id) {
+
         this.id = id;
     }
 
     public int getId() {
+
         return id;
     }
 
@@ -26,6 +28,7 @@ public class Task {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(id);
     }
 
@@ -36,6 +39,7 @@ public class Task {
      * @return Ответ на вопрос, подходит ли эта задача под поисковый запрос
      */
     public boolean matches(String query) {
+
         return false;
     }
 }
