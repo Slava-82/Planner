@@ -9,7 +9,6 @@ public class SimpleTask extends Task {
     }
 
     public String getTitle() {
-
         return title;
     }
 
@@ -18,8 +17,7 @@ public class SimpleTask extends Task {
         if (title.contains(query)) {
             return true;
         } else {
-
-        return false;
+            return false;
         }
     }
 }
