@@ -8,12 +8,9 @@ public class TasksTest {
     @Test
     public void shouldTestSimpleTaskMatchesTrue() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
 
         boolean expected = true;
-        boolean actual = simpleTask.matches("Позвонить родителям");
+        boolean actual = simpleTask.matches("Позвонить");
 
         Assertions.assertEquals(expected, actual);
 
@@ -22,64 +19,9 @@ public class TasksTest {
     @Test
     public void shouldTestSimpleTaskMatchesFalse() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
 
         boolean expected = false;
-        boolean actual = simpleTask.matches("Не звонить");
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldThreeTasksSimpleTaskMatchesTrue() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
-
-        Meeting meeting = new Meeting(
-                555,
-                "Выкатка 3й версии приложения",
-                "Приложение НетоБанка",
-                "Во вторник после обеда"
-        );
-
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
-        todos.add(meeting);
-        boolean expected = true;
-        boolean actual = simpleTask.matches("Позвонить родителям");
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldThreeTasksSimpleTaskMatchesFalse() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
-
-        Meeting meeting = new Meeting(
-                555,
-                "Выкатка 3й версии приложения",
-                "Приложение НетоБанка",
-                "Во вторник после обеда"
-        );
-
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
-        todos.add(meeting);
-        boolean expected = false;
-        boolean actual = simpleTask.matches("Прогуляться");
+        boolean actual = simpleTask.matches("Написать");
 
         Assertions.assertEquals(expected, actual);
 
@@ -87,15 +29,12 @@ public class TasksTest {
 
     @Test
     public void shouldTestEpicMatchesTrue() {
+
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
 
-        Todos todos = new Todos();
-
-        todos.add(epic);
-
         boolean expected = true;
-        boolean actual = epic.matches("Молоко");
+        boolean actual = epic.matches("Яйца");
 
         Assertions.assertEquals(expected, actual);
 
@@ -103,26 +42,19 @@ public class TasksTest {
 
     @Test
     public void shouldTestEpicMatchesFalse() {
+
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
-
-        Todos todos = new Todos();
-
-        todos.add(epic);
 
         boolean expected = false;
-        boolean actual = epic.matches("Картошка");
+        boolean actual = epic.matches("Сахар");
 
         Assertions.assertEquals(expected, actual);
 
     }
 
     @Test
-    public void shouldThreeTasksEpicMatchesTrue() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
+    public void shouldTestMeetingMatchesTopicTrue() {
 
         Meeting meeting = new Meeting(
                 555,
@@ -130,26 +62,16 @@ public class TasksTest {
                 "Приложение НетоБанка",
                 "Во вторник после обеда"
         );
-
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
-        todos.add(meeting);
 
         boolean expected = true;
-        boolean actual = epic.matches("Хлеб");
+        boolean actual = meeting.matches("Выкатка");
 
         Assertions.assertEquals(expected, actual);
 
     }
 
     @Test
-    public void shouldThreeTasksEpicMatchesFalse() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
+    public void shouldTestMeetingMatchesProjectTrue() {
 
         Meeting meeting = new Meeting(
                 555,
@@ -157,36 +79,9 @@ public class TasksTest {
                 "Приложение НетоБанка",
                 "Во вторник после обеда"
         );
-
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
-        todos.add(meeting);
-
-        boolean expected = false;
-        boolean actual = epic.matches("Соль");
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldTestMeetingMatchesTrue() {
-
-        Meeting meeting = new Meeting(
-                555,
-                "Выкатка 3й версии приложения",
-                "Приложение НетоБанка",
-                "Во вторник после обеда"
-        );
-
-        Todos todos = new Todos();
-
-        todos.add(meeting);
 
         boolean expected = true;
-        boolean actual = meeting.matches("Выкатка 3й версии приложения");
+        boolean actual = meeting.matches("Приложение");
 
         Assertions.assertEquals(expected, actual);
 
@@ -202,129 +97,8 @@ public class TasksTest {
                 "Во вторник после обеда"
         );
 
-        Todos todos = new Todos();
-
-        todos.add(meeting);
-
         boolean expected = false;
-        boolean actual = meeting.matches("Поход в супермаркет");
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldThreeTasksMeetingMatchesTrue() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
-
-        Meeting meeting = new Meeting(
-                555,
-                "Выкатка 3й версии приложения",
-                "Приложение НетоБанка",
-                "Во вторник после обеда"
-        );
-
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
-        todos.add(meeting);
-
-        boolean expected = true;
-        boolean actual = meeting.matches("Приложение НетоБанка");
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldThreeTasksMeetingMatchesFalse() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
-
-        Meeting meeting = new Meeting(
-                555,
-                "Выкатка 3й версии приложения",
-                "Приложение НетоБанка",
-                "Во вторник после обеда"
-        );
-
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
-        todos.add(meeting);
-
-        boolean expected = false;
-        boolean actual = meeting.matches("Во вторник после обеда");
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldThreeDifferentTasksMatchesFalse() {
-        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-        SimpleTask simpleTask1 = new SimpleTask(6, "Поехать за продуктами");
-        SimpleTask simpleTask2 = new SimpleTask(7, "Пойти в кино");
-
-        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
-        Epic epic = new Epic(55, subtasks);
-        String[] subtasks1 = {"Печнье", "Сыр", "Вода"};
-        Epic epic1 = new Epic(56, subtasks1);
-        String[] subtasks2 = {"Орехи", "Пиво", "Лимон"};
-        Epic epic2 = new Epic(57, subtasks2);
-
-        Meeting meeting = new Meeting(
-                555,
-                "Выкатка 3й версии приложения",
-                "Приложение НетоБанка",
-                "Во вторник после обеда"
-        );
-        Meeting meeting1 = new Meeting(
-                777,
-                "Первая версия",
-                "Полет на Марс",
-                "В пятницу вечером"
-        );
-        Meeting meeting2 = new Meeting(
-                888,
-                "Седьмой вариант",
-                "Приток воды",
-                "Среда"
-        );
-
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(simpleTask1);
-        todos.add(simpleTask2);
-        todos.add(epic);
-        todos.add(epic1);
-        todos.add(epic2);
-        todos.add(meeting);
-        todos.add(meeting1);
-        todos.add(meeting2);
-
-        boolean expected = false;
-        boolean actual = meeting.matches("Среда");
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldTasksFalse() {
-
-        Task task = new Task(1);
-
-        boolean expected = false;
-        boolean actual = task.matches("Приток воды");
+        boolean actual = meeting.matches("Полет");
 
         Assertions.assertEquals(expected, actual);
 
