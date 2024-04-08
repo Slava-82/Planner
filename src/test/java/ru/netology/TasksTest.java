@@ -267,5 +267,68 @@ public class TasksTest {
 
     }
 
+    @Test
+    public void shouldThreeDifferentTasksMatchesFalse() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+        SimpleTask simpleTask1 = new SimpleTask(6, "Поехать за продуктами");
+        SimpleTask simpleTask2 = new SimpleTask(7, "Пойти в кино");
+
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(55, subtasks);
+        String[] subtasks1 = {"Печнье", "Сыр", "Вода"};
+        Epic epic1 = new Epic(56, subtasks1);
+        String[] subtasks2 = {"Орехи", "Пиво", "Лимон"};
+        Epic epic2 = new Epic(57, subtasks2);
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+        Meeting meeting1 = new Meeting(
+                777,
+                "Первая версия",
+                "Полет на Марс",
+                "В пятницу вечером"
+        );
+        Meeting meeting2 = new Meeting(
+                888,
+                "Седьмой вариант",
+                "Приток воды",
+                "Среда"
+        );
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+        todos.add(simpleTask1);
+        todos.add(simpleTask2);
+        todos.add(epic);
+        todos.add(epic1);
+        todos.add(epic2);
+        todos.add(meeting);
+        todos.add(meeting1);
+        todos.add(meeting2);
+
+        boolean expected = false;
+        boolean actual = meeting.matches("Среда");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldTasksFalse() {
+
+        Task task = new Task(1);
+
+        boolean expected = false;
+        boolean actual = task.matches("Приток воды");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
 }
 
